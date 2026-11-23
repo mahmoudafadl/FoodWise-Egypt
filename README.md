@@ -79,13 +79,14 @@ All datasets are aligned on a unified monthly timeline (**January 2015 – June 
 
 ## Repository Structure
 ```text
+├── app/                    # Streamlit multi-page web application
 ├── data/
 │   ├── raw/                # Original untouched datasets
 │   └── processed/          # Cleaned & merged master datasets
-├── notebooks/              # Step-by-step EDA, feature engineering & modeling
-├── src/                    # Modular Python scripts (pipeline, features, train, API)
 ├── models/                 # Serialized ML models & metadata
-├── app/                    # Streamlit multi-page web application
+├── notebooks/              # Step-by-step EDA, feature engineering & modeling
+├── scripts/                # Data collection & API fetching scripts
+├── src/                    # Modular Python scripts (pipeline, features, train, API)
 ├── requirements.txt
 └── README.md
 ```
@@ -96,7 +97,7 @@ All datasets are aligned on a unified monthly timeline (**January 2015 – June 
 
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/](https://github.com/)mahmoudafadl/FoodWise-Egypt.git
+git clone [https://github.com/mahmoudafadl/FoodWise-Egypt.git](https://github.com/mahmoudafadl/FoodWise-Egypt.git)
 cd FoodWise-Egypt
 
 # 2. Create and activate virtual environment
@@ -111,3 +112,11 @@ streamlit run app/main.py
 ```
 
 ---
+
+## Project Team (DEPI Data Science Track)
+* **Mahmoud Abbas**
+* **Ahmed Abdelhamed**
+* **Sara Elbably**
+* **Basmala Sobhy**
+* **Mostafa Ahmed**
+* **Omar Afifi**
