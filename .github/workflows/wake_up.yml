@@ -1,0 +1,40 @@
+name: Keep Streamlit App Awake
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  wake-up:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wake up Streamlit Cloud App via Headless Browser
+        env:
+          APP_URL: ${{ vars.STREAMLIT_APP_URL }}
+        run: |
+          if [ -z "$APP_URL" ]; then
+            echo "Error: STREAMLIT_APP_URL variable is not set in GitHub Actions Variables."
+            exit 1
+          fi
+          pip install playwright
+          playwright install --with-deps chromium
+          python - << 'EOF'
+          import os
+          from playwright.sync_api import sync_playwright
+
+          url = os.environ["APP_URL"]
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              page = browser.new_page()
+              page.goto(url, timeout=60000)
+              page.wait_for_timeout(5000)
+              wake_btn = page.locator("button:has-text('Yes, get this app back up')")
+              if wake_btn.count() > 0:
+                  wake_btn.click()
+                  page.wait_for_timeout(15000)
+                  print("App was sleeping — clicked wake-up button!")
+              else:
+                  print("App is already awake and running!")
+              browser.close()
+          EOF
