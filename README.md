@@ -108,7 +108,7 @@ All datasets are aligned on a unified monthly timeline (**January 2015 – June 
 
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/mahmoudafadl/FoodWise-Egypt.git](https://github.com/mahmoudafadl/FoodWise-Egypt.git)
+git clone https://github.com/mahmoudafadl/FoodWise-Egypt.git
 cd FoodWise-Egypt
 
 # 2. Create and activate virtual environment
