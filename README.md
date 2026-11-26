@@ -39,11 +39,6 @@ Food price volatility in Egypt is driven by a complex interaction between curren
 [Interactive Web Application (`app/` — Streamlit + Plotly)]
  └── 6 Analytical Modules + Live Forecast APIs + What-If Macro Simulator
 ```
-## Deployment & Runtime Architecture
-- **Lightweight Artifact Storage (< 3 MB):** While raw datasets (`data/raw/`) exceed 9 MB, all processed tables (`data/processed/`) and serialized global models (`models/*.joblib`) are kept under **3 MB** total for instant repository cloning and fast in-memory loading. SHAP values are computed on-the-fly via `shap.TreeExplainer` rather than stored as heavy files.
-- **In-Memory Caching & API Resilience:** Live exchange rate (`ttl=1h`) and weather forecast (`ttl=3h`) calls are cached via `@st.cache_data` with strict request timeouts and automatic fallback to the latest verified historical records if external APIs are unreachable.
-- **Automated Keep-Alive Pipeline:** A scheduled GitHub Actions workflow (`.github/workflows/wake_up.yml`) runs every **6 hours** using a headless Chromium browser (Playwright) to keep the Streamlit Cloud instance warm and responsive throughout evaluation.
----
 
 ## Deployment & Runtime Architecture
 - **Lightweight Artifact Storage (< 3 MB):** While raw datasets (`data/raw/`) exceed 9 MB, all processed datasets (`data/processed/`) and serialized global models (`models/*.joblib`) are kept under **3 MB** total for fast repository cloning and in-memory loading. SHAP values are computed on-the-fly via `shap.TreeExplainer` rather than stored in heavy files.
