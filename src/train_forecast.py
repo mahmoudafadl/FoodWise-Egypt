@@ -1,4 +1,3 @@
-
 from pathlib import Path
 
 import pandas as pd
@@ -79,7 +78,7 @@ def main():
 
     joblib.dump(
         model,
-        MODELS_DIR / "xgboost_foodwise.joblib"
+        MODELS_DIR / "best_forecast_model.joblib"
     )
 
     joblib.dump(
@@ -88,7 +87,7 @@ def main():
     )
 
     model.save_model(
-        MODELS_DIR / "xgboost_foodwise.json"
+        MODELS_DIR / "best_forecast_model.json"
     )
 
     print("Training completed successfully!")
